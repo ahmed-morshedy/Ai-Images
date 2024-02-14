@@ -1,9 +1,9 @@
-const api = "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";
+const api = "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";
 const input = document.getElementById("inp");
 const mainDiv = document.querySelector(".container");
 
 const getImg = async () => {
-  mainDiv.innerHTM = "";
+  mainDiv.innerHTML = "";
   const methods = {
     method: "POST",
     headers: {
@@ -21,13 +21,14 @@ const getImg = async () => {
     methods
   );
 
-  const data = await res.json();
-  const imgList = data.data;
-  imgList.forEach((photo) => {
-    let div = document.createElement("div");
-    let img = document.createElement("img");
-    img.src = photo.url;
-    div.appendChild(img);
-    mainDiv.appendChild(div);
+  const myData = await res.json();
+
+  const imgList = myData.data;
+  imgList.map((img) => {
+    const divTag = document.createElement("div");
+    const imgTag = document.createElement("img");
+    imgTag.src = img.url;
+    divTag.appendChild(imgTag);
+    mainDiv.appendChild(divTag);
   });
 };
